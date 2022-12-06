@@ -18,19 +18,46 @@ const usuario = {
     }
 }
 
-router.get("/", (req, res) =>{
-    //implementar el codigo
-    res.json(usuario.mascota.nombre)
+// localhost:3000/usuario/
+
+router.get("/", (req, res) => {
+    //Implementar el codigo
+    res.json(usuario)
 })
 
-router.get("/mascota", (req, res) =>{
-    //implementar el codigo
+router.get("/mascota", (req, res) => {
+    //Implementar el codigo
     res.json(usuario.mascota)
 })
 
-router.get("/nombre", (req, res) =>{
-    //implementar el codigo
+router.get("/nombre", (req, res) => {
+    //Implementar el codigo
     res.json(usuario.nombre)
+})
+router.get("/agrupar", (req, res) => {
+    res.send("Usted esta en la pestaña de AGRUPAR!.")
+})
+
+router.get("/agrupar/:args", (req, res) => {
+    let nombres = req.params.args
+    nombres = nombres.split(" ")
+    //  nombres = "Juan Andrea Daniel Laura"
+    //  nombres = ["Juan", "Andrea", "Daniel", "Laura"]
+    res.json(nombres)
+})
+
+router.get("/:nombre", (req, res) => {
+    let nombre = req.params.nombre
+    res.send("Usted está buscando al usuario: "+nombre)
+})
+
+router.get("/:nombre/:id", (req, res) => {
+    let nombre = req.params.nombre
+    let idUsuario = req.params.id
+    res.json({
+        "nombre de usuario":nombre,
+        "id usuario":idUsuario
+    })
 })
 
 export default router

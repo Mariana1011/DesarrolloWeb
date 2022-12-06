@@ -1,8 +1,10 @@
 import express from "express";
 import UserRouter from "./routes/UserRouter.js";
+import homeRouter from "./routes/home.js"
 
 const app = express();
 const puerto = 3000;
+
 
 // //Funcion normal
 // function nombre(arga, argb, arg...){
@@ -35,24 +37,16 @@ app.listen(puerto, () => {
     console.log("El servidor se esta ejecutando.");
 })
 
-app.get("/", (req, res) =>{
-    //implementar el codigo
-    res.send("Hola")
+app.get("/", (req, res) => {
+    //Implementar el codigo
+    res.send("Hola, Mundo!")
 })
 
-app.get("/home", (req, res) =>{
-    //implementar el codigo
-    res.send("home a")
-})
+// app.get("/direccion", (req, res) => {
+//     //Implementar el codigo
+//     res.redirect("home/G01")
+// })
 
-app.get("/home/g1", (req, res) =>{
-    //implementar el codigo
-    res.send("g1")
-})
-
-app.get("/direccion", (req, res) =>{
-    //implementar el codigo
-    res.send("/home/g1")
-})
-
-app.use ("/usuario", UserRouter)
+app.use(express.json())
+app.use("/usuario", UserRouter)
+app.use("/home", homeRouter)
